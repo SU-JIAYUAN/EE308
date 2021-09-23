@@ -2,9 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <unordered_map>
 #include <vector>
-#include <stack>
 
 using namespace std;
 
@@ -15,21 +13,21 @@ const string KEYWORDS[] = { "auto","break","case","char","const","continue","def
 
 const int keywords_list_num = 32;
 
+string path;
 int keywords_count = 0;
 int switch_count = 0;
 int case_count = 0;
 int total_selection_count = 0;
 int if_else_count = 0;
 int if_elseif_else_count = 0;
-string path;
 int level;
 
+void userInterfaceHiddenCode(string path, int level);
 void countKeywords(fstream& fName);
 void countSwitch();
 void countSelectionTotal();
 void countIfElseNum();
 void countIfElseifElseNum();
-void userInterfaceHiddenCode(string path, int level);
 
 vector<string> keywordsAndBracesShown;
 vector<string> keywordsShown;
@@ -46,6 +44,7 @@ int main(){
 
 	return 0;
 }
+
 
 
 void userInterfaceHiddenCode(string path,int level) {
@@ -107,7 +106,6 @@ void countSwitch() {
 	string target_case = "case";
 
 	for(int i = 0; i < keywords_count; i++){
-		// cout << keywordsShown[i] << endl;
 		if (keywordsShown[i].compare(target_switch) == 0 ||
 			(keywordsShown[i].compare(target_switch) != 0 &&
 				keywordsShown[i].substr(0, target_switch.length()).compare(target_switch) == 0 &&
